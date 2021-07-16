@@ -1,0 +1,431 @@
+@import "font";
+@import "colors";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    overflow-y: hidden;
+    
+    //&::-webkit-scrollbar {
+    //    display: block;
+    //    width: 10px;
+    //}
+    //
+    //&::-webkit-scrollbar-track {
+    //    background: $background;
+    //}
+    //
+    //&::-webkit-scrollbar-thumb {
+    //    background: #fff;
+    //    border-radius: 10px;
+    //    border: 2px solid $background;
+    //}
+}
+
+#container {
+    color: #fff;
+    height: inherit;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+div.content-container {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 0 5vw;
+    position: relative;
+    width: 100vw;
+    font-family: "Codename Coder", sans-serif;
+    font-weight: bold;
+    text-align: center;
+    background-image: url('../images/background/mountains.png');
+    background-size: cover;
+    background-position: 50% 50%;
+    
+    h1 {
+        display: inline-block;
+        padding-left: 15px;
+        padding-bottom: 0.1rem;
+        margin-top: 50vh;
+        position: relative;
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        z-index: 1;
+    }
+    
+    h1.time-header {
+        background: $background;
+        
+        &:before, &:after {
+            position: absolute;
+            background: $background;
+            content: "";
+            bottom: 0;
+            top: 0;
+            width: 2.4rem;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        &:before {
+            left: -1.2rem;
+        }
+        
+        &:after {
+            right: -1.2rem;
+        }
+        
+        span.header-border {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            border-top: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            z-index: 2;
+        }
+    }
+    
+    h1.hello-header, h4 {
+        font-family: Lobster, Arial, sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 0.3em;
+        color: $background;
+        text-shadow: 2px 2px 2px rgba(230, 230, 230, 0.8);
+    }
+    
+    h4 {
+        display: block;
+        max-width: 600px;
+        font-size: 0.8rem;
+        margin: 1rem auto;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+$bar-length: 25px;
+$bar-thickness: 3px;
+$breakpoint-md: 768px;
+header.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    z-index: 10;
+    border-bottom: 2px solid $background;
+    background: rgba(54, 53, 80, 0.5);
+    
+    .header-body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        .bars {
+            display: none;
+        }
+        
+        nav.site-header-list {
+            display: flex;
+            align-items: center;
+            justify-content: stretch;
+            flex: 0 1 95%;
+            
+            .nav_item {
+                padding: 0 0.5rem;
+                cursor: pointer;
+                text-align: center;
+                justify-self: flex-start;
+                
+                .nav_link {
+                    font-family: "PT Sans", sans-serif;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    border-radius: 2px;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    color: $background;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2em;
+                    padding: 0.5em 0.8em;
+                    border: 2px solid $background;
+                    transition: all 300ms ease-in-out;
+                    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.2);
+                    
+                    @media screen and (min-width: 1000px) {
+                        &:hover {
+                            border: 2px solid $white;
+                            color: $white;
+                            box-shadow: none;
+                        }
+                    }
+                    
+                    &:active {
+                        border: 2px solid #fff;
+                        color: $white;
+                    }
+                }
+            }
+            
+            .social__column {
+                padding-top: 0.2rem;
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+                margin-left: auto;
+                
+                span {
+                    color: $background;
+                    white-space: nowrap;
+                    display: block;
+                    font: 0.45rem "PT Sans";
+                    letter-spacing: 0.15em;
+                    text-transform: uppercase;
+                }
+                
+                ul.social-menu {
+                    display: flex;
+                    list-style: none;
+                    padding: 0;
+                    
+                    li {
+                        display: inline-block;
+                        margin: 0.2rem;
+                        
+                        a {
+                            display: flex;
+                            height: 1rem;
+                            width: 1rem;
+                            padding: 0.15rem;
+                            border-radius: 40px;
+                            background-color: $background;
+                            -webkit-transition: all 0.2s ease;
+                            -o-transition: all 0.2s ease;
+                            transition: all ease 0.2s;
+                            
+                            .social-icon {
+                                margin: 0 auto;
+                                width: 80%;
+                                height: auto;
+                                fill: #fff;
+                            }
+                            
+                            &:hover, &:active {
+                                .social-icon {
+                                    fill: #fff;
+                                }
+                            }
+                            
+                            
+                            &:hover {
+                                &.phone-icon {
+                                    background-color: $phone-icon-color;
+                                }
+                                
+                                &.gmail-icon {
+                                    background-color: $gmail-icon-color;
+                                }
+                                
+                                &.tg-icon {
+                                    background-color: $tg-icon-color;
+                                }
+                                
+                                &.vk-icon {
+                                    background-color: $vk-icon-color;
+                                }
+                                
+                                &.ig-icon {
+                                    background: $ig-icon-col-default;
+                                    background: $ig-icon-color;
+                                }
+                                
+                                
+                            }
+                        }
+                        
+                        .phone-icon .social-icon {
+                            width: 70%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @media (max-width: $breakpoint-md) {
+        height: 50px;
+        
+        .header-body {
+            justify-content: flex-end;
+            
+            .bars {
+                display: flex;
+                position: relative;
+                width: $bar-length;
+                height: $bar-length;
+                border-radius: 50%;
+                cursor: pointer;
+                
+                &.is-active {
+                    z-index: 12;
+                    
+                    span {
+                        transform: rotate(-45deg);
+                        
+                        &:before,
+                        &:after {
+                            transform: translateX(0) rotate(-90deg);
+                        }
+                    }
+                }
+                
+                & > span {
+                    position: absolute;
+                    width: $bar-length;
+                    height: $bar-thickness;
+                    border-radius: 3px;
+                    transition: 0.2s ease-in-out;
+                    background: $background;
+                    top: 49%;
+                    
+                    &::before,
+                    &::after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        will-change: transform;
+                        width: $bar-length;
+                        height: $bar-thickness;
+                        background: $background;
+                        border-radius: 2px;
+                        transition: 0.2s ease-in-out;
+                    }
+                    
+                    &:before {
+                        transform: translateY(-8px);
+                    }
+                    
+                    &:after {
+                        transform: translateY(8px);
+                    }
+                    
+                }
+            }
+            
+            nav.site-header-list {
+                display: block;
+                box-sizing: border-box;
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                max-width: unset;
+                height: 100%;
+                z-index: 10;
+                background: $background;
+                background: rgba(54, 53, 80, 0.5);
+                transition: all 1s ease 0s;
+                
+                .social__column {
+                    span {
+                        font-size: 0.55rem;
+                    }
+                    
+                    ul.social-menu li a {
+                        height: 1.2rem;
+                        width: 1.2rem;
+                        
+                        &.phone-icon {
+                            background-color: $phone-icon-color;
+                        }
+                        
+                        &.gmail-icon {
+                            background-color: $gmail-icon-color;
+                        }
+                        
+                        &.tg-icon {
+                            background-color: $tg-icon-color;
+                        }
+                        
+                        &.vk-icon {
+                            background-color: $vk-icon-color;
+                        }
+                        
+                        &.ig-icon {
+                            background: $ig-icon-col-default;
+                            background: $ig-icon-color;
+                        }
+                    }
+                }
+                
+                &.active {
+                    top: 0;
+                    padding-top: 50px;
+                    overflow: hidden;
+                }
+                
+                .nav_item {
+                    display: block;
+                    padding: 5px 0;
+                    
+                    .nav_link {
+                        width: 100%;
+                        font-size: 0.6rem;
+                        
+                        &:active {
+                            border: 2px solid #fff;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+div.weather-container {
+    width: 100%;
+    height: 100%;
+    
+    .weather-slider-panel {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 0.4rem 1.2rem;
+        //border-top: 2px solid $background;
+        //background: rgba(54, 53, 80, 0.4);
+        
+        @media screen and (max-width: 576px){
+            padding: 0.5rem;
+        }
+    }
+}
+
+@import "../weather-slider/styles/slider";
+
+

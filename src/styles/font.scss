@@ -1,0 +1,66 @@
+:root {
+    font-size: calc(22px + 5 * (100vw / 1280));
+}
+
+@font-face {
+    font-family: 'Codename Coder';
+    font-weight: bold;
+    src: url('fonts/codenamecoder/CodenameCoderFree4F-Bold.ttf') format('truetype'),
+    url('fonts/codenamecoder/CodenameCoderFree4F-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Lobster';
+    font-weight: normal;
+    src: url('fonts/lobster/Lobster-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('fonts/PT_Sans/pt-sans-v12-latin-ext_latin_cyrillic-ext_cyrillic-regular.ttf') format('truetype'),
+    url('fonts/PT_Sans/pt-sans-v12-latin-ext_latin_cyrillic-ext_cyrillic-regular.eot') format('opentype');
+}
+
+@media (max-width: 767px) {
+    :root {
+        font-size: calc(22px + (5 + 5 * 0.7) * (100vw - 320px) / 1280);
+    }
+}
+
+h1 {
+    font-size: 1rem;
+}
+
+h2 {
+    font-size: 0.9rem;
+}
+
+h3 {
+    font-size: 0.8rem;
+}
+
+h4 {
+    font-size: 0.7rem;
+}
+
+p {
+    font-size: 0.7rem;
+}
+
+input[type="button"] {
+    font-size: 0.6rem;
+}
+
+input[type="text"], span {
+    font-size: 0.55rem;
+}
+
+h1 {
+    font-weight: bold;
+    font-family: 'Codename Coder', sans-serif;
+}
+
+a {
+    font-size: 0.5rem;
+    font-weight: bold !important;
+}
