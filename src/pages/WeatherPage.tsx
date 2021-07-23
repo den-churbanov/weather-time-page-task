@@ -11,11 +11,10 @@ export const WeatherPage: React.FC = () => {
         {point: 360, slidesToShow: 1},
         {point: 576, slidesToShow: 2},
         {point: 800, slidesToShow: 3},
-        {point: 992, slidesToShow: 4},
-        {point: 1320, slidesToShow: 5},
-        {point: 1500, slidesToShow: 6},
-        {point: 2000, slidesToShow: 8}
+        {point: 1300, slidesToShow: 4},
+        {point: 1500, slidesToShow: 5},
     ]
+
     return (
         <>
             <Helmet>
