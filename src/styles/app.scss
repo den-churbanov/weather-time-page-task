@@ -55,6 +55,8 @@ html {
 
 body {
     overflow-y: hidden;
+    background: rgb(255,200,202);
+    background: linear-gradient(180deg, rgba(255,200,202,1) 0%, rgba(78,88,152,1) 100%);
 }
 
 #container {
@@ -62,7 +64,6 @@ body {
     height: inherit;
     overflow: hidden;
     box-sizing: border-box;
-    background: $primary-bg;
     background-size: cover;
     background: url("../images/background/mountains.png") no-repeat 50% 50%;
 }
