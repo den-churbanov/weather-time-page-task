@@ -1,7 +1,7 @@
 @import "../../styles/colors";
-$background: #363550;
+
 $hover: #676599;
-$background-transp: rgba(54, 53, 80, 0.5);
+
 .wrapper {
     
     .slider-button {
@@ -46,69 +46,81 @@ $background-transp: rgba(54, 53, 80, 0.5);
     
     .slider-container {
         overflow: hidden;
-    
+        
+        @media screen and (max-width: 576px) {
+            overflow: visible;
+        }
+        
         .slider-track {
             display: flex;
-            transition: 0.2s;
-    
-            .slider-item {
+            transition: 400ms;
+            animation-timing-function: cubic-bezier(0.15, 0.32, 0.55, 1.35);
+            
+            .slider-card {
+                font-family: "PT Sans", sans-serif;
                 box-sizing: border-box;
-                background-color: $background-transp;
+                background-color: $card-back;
+                color: $white;
                 border-radius: 12px;
-                border: 2px solid $white;
-                height: 37vh;
+                border: 2px solid $main;
+                height: 35vh;
                 text-align: center;
+                padding: 0.2rem;
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flex;
+                display: flex;
+                flex-flow: column nowrap;
+                cursor: pointer;
                 
-                @media screen and (max-width: 576px){
-                    height: 30vh;
+                @media screen and (max-width: 576px) {
+                    height: 28vh;
                 }
                 
                 &:first-child {
                     margin-left: 0px !important;
                 }
+                
+                span, p{
+                    align-self: center;
+                    font-size: 0.4rem;
+                    letter-spacing: 0.06rem;
+                    padding: 0.1rem 0.2rem;
+                }
     
-                //.image-div{
-                //    width: 90px;
-                //    height: 90px;
-                //    margin: 0 auto;
-                //
-                //    .image{
-                //        width: 95%;
-                //        height: 95%;
-                //        margin: 0 auto;
-                //    }
-                //}
-                //
-                //h4,h2,h3{
-                //    display: block;
-                //    margin: 2px auto;
-                //}
-                //
-                //h3,h4{
-                //    margin-top: 10px;
-                //}
-                //.day-temp{
-                //    margin-top: 0;
-                //    margin-bottom: 0;
-                //}
-                //.night-temp{
-                //    margin-top: 2px;
-                //    margin-bottom: 0;
-                //    color: #1a3264;
-                //    font-size: 14px;
-                //}
-                //h4{
-                //    //color: #d9d9d9;
-                //}
-                //
-                //h3{
-                //    color: #283560;
-                //}
-                //
-                //p{
-                //    color: #d9d9d9;
-                //    font: italic bold 12px Arial, sans-serif;
-                //}
+                span{
+                    text-transform: uppercase;
+                    letter-spacing: 0.08rem;
+                }
+                
+                p{
+                    line-height: 0.6rem;
+                    padding: 0.2rem 0;
+                    letter-spacing: 0.08rem;
+                }
+                .card-icon {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    margin: 0 auto;
+                }
+                
+                h5 {
+                    font-size: 0.5rem;
+                    letter-spacing: 0.06rem;
+                    padding: 0.1rem 0.2rem;
+                    
+                    &.day-temp{
+                        font-size: 0.7rem;
+                        letter-spacing: 0.07rem;
+                    }
+                }
+                
+                h6.night-temp{
+                    color: #acacac;
+                    font-size: 0.5rem;
+                    letter-spacing: 0.03rem;
+                    padding: 0.1rem;
+                }
             }
         }
     }

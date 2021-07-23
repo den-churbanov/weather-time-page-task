@@ -13,29 +13,36 @@ import IconsSVG from './svg-icons/social-icons-sprite.svg'
  * more: https://duncanleung.com/typescript-module-declearation-svg-img-assets/
 }**/
 
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            Navigation: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+        }
+    }
+}
 type SocialLink = {
     href: string,
     className: string,
     iName: string
 }
 
-export function CLink(href: string, className: string, iName: string) {
-    return {
-        href,
-        className,
-        iName
-    }
-}
-
 export const Header: React.FC = () => {
     const [mobileActive, setMobileActive] = useState(false)
 
     const links: Array<SocialLink> =
-           [CLink('tel:+79278988843', 'phone-icon', 'phone'),
+        [CLink('tel:+79278988843', 'phone-icon', 'phone'),
             CLink('mailto:churbanov.dv@gmail.com', 'gmail-icon', 'gmail'),
             CLink('https://t.me/den_churbanov', 'tg-icon', 'tg'),
             CLink('https://vk.com/den_churbanov', 'vk-icon', 'vk'),
             CLink('https://instagram.com/den_churbanov', 'ig-icon', 'ig')]
+
+    function CLink(href: string, className: string, iName: string) {
+        return {
+            href,
+            className,
+            iName
+        }
+    }
 
     const toggleMenu = (e: React.MouseEvent) => {
         e.preventDefault()
@@ -51,9 +58,6 @@ export const Header: React.FC = () => {
     return (
         <header className="header">
             <div className="header-body">
-                <div className={`bars${mobileActive ? ' is-active' : ''}`} onClick={toggleMenu}>
-                    <span/>
-                </div>
                 <nav className={`site-header-list ${mobileActive ? 'active ' : ''}`}>
                     <div className="nav_item">
                         <Link to="/" className="nav_link" onClick={hideMenu}>На главную</Link>
@@ -84,6 +88,10 @@ export const Header: React.FC = () => {
                         </ul>
                     </div>
                 </nav>
+                <div className={`header-block${mobileActive ? ' active' : ''}`}/>
+                <div className={`bars${mobileActive ? ' is-active' : ''}`} onClick={toggleMenu}>
+                    <span/>
+                </div>
             </div>
         </header>
     )

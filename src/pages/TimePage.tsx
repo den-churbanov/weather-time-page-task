@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {Helmet} from "react-helmet-async";
+import {Helmet} from 'react-helmet-async'
 
 export const TimePage: React.FC = () => {
 
@@ -11,11 +11,11 @@ export const TimePage: React.FC = () => {
         return `${h}:${m}:${s}`
     }, [])
 
+    const [time, setTime] = useState<string>(getCurrentTime())
+
     function parseTimePart(part: number) {
         return part.toString().length > 1 ? part.toString() : `0${part}`
     }
-
-    const [time, setTime] = useState<string>(getCurrentTime())
 
     useEffect(() => {
         const id = setInterval(() => {

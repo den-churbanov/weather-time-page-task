@@ -1,11 +1,11 @@
 import React from 'react'
 import './styles/app.css'
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom"
-import {HelmetProvider} from "react-helmet-async"
-import {WrapperPage} from "./pages/WrapperPage"
-import {HomePage} from "./pages/HomePage"
-import {TimePage} from "./pages/TimePage"
-import {WeatherPage} from "./pages/WeatherPage"
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
+import {HelmetProvider} from 'react-helmet-async'
+import {WrapperPage} from './pages/WrapperPage'
+import {HomePage} from './pages/HomePage'
+import {TimePage} from './pages/TimePage'
+import {WeatherPage} from './pages/WeatherPage'
 
 const App: React.FC = () => {
     return (
@@ -24,4 +24,4 @@ const App: React.FC = () => {
     )
 }
 
-export default App;
+export default App

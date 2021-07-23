@@ -1,6 +1,47 @@
 @import "font";
 @import "colors";
 
+$breakpoint-md: 768px;
+$breakpoint-sm: 576px;
+$primary: $main;
+
+@mixin button-mixin {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid $primary;
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.3rem 0;
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: $primary;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: all ease-in 0.2s;
+    -moz-transition: all ease-in 0.2s;
+    -o-transition: all ease-in 0.2s;
+    transition: all ease-in 0.2s;
+    
+    &:disabled {
+        opacity: 0.75;
+        cursor: auto;
+    }
+    
+    @media screen and (min-width: 992px) {
+        &:hover:enabled {
+            background: $primary;
+            color: $white;
+        }
+    }
+    
+    &:active:enabled {
+        background: $primary;
+        color: $white;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,21 +55,6 @@ html {
 
 body {
     overflow-y: hidden;
-    
-    //&::-webkit-scrollbar {
-    //    display: block;
-    //    width: 10px;
-    //}
-    //
-    //&::-webkit-scrollbar-track {
-    //    background: $background;
-    //}
-    //
-    //&::-webkit-scrollbar-thumb {
-    //    background: #fff;
-    //    border-radius: 10px;
-    //    border: 2px solid $background;
-    //}
 }
 
 #container {
@@ -36,22 +62,26 @@ body {
     height: inherit;
     overflow: hidden;
     box-sizing: border-box;
+    background: $primary-bg;
+    background-size: cover;
+    background: url("../images/background/mountains.png") no-repeat 50% 50%;
 }
 
 div.content-container {
     box-sizing: border-box;
     min-height: 100vh;
-    padding: 0 5vw;
+    padding: 60px 1.2rem 0;
     position: relative;
     width: 100vw;
-    font-family: "Codename Coder", sans-serif;
     font-weight: bold;
     text-align: center;
-    background-image: url('../images/background/mountains.png');
-    background-size: cover;
-    background-position: 50% 50%;
+    
+    @media (max-width: $breakpoint-sm) {
+        padding: 50px 0.4rem 0;
+    }
     
     h1 {
+        font-family: "Codename Coder", sans-serif;
         display: inline-block;
         padding-left: 15px;
         padding-bottom: 0.1rem;
@@ -68,11 +98,11 @@ div.content-container {
     }
     
     h1.time-header {
-        background: $background;
+        background: $primary;
         
         &:before, &:after {
             position: absolute;
-            background: $background;
+            background: $primary;
             content: "";
             bottom: 0;
             top: 0;
@@ -105,7 +135,7 @@ div.content-container {
         font-family: Lobster, Arial, sans-serif;
         font-size: 1.5rem;
         letter-spacing: 0.3em;
-        color: $background;
+        color: $primary;
         text-shadow: 2px 2px 2px rgba(230, 230, 230, 0.8);
     }
     
@@ -124,20 +154,24 @@ div.content-container {
 
 $bar-length: 25px;
 $bar-thickness: 3px;
-$breakpoint-md: 768px;
 header.header {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     height: 60px;
-    padding: 0 1rem;
+    padding: 0 1.4rem;
     box-sizing: border-box;
     z-index: 10;
-    border-bottom: 2px solid $background;
-    background: rgba(54, 53, 80, 0.5);
+    border-bottom: 2px solid $primary;
+    background: $main-transparence;
+    
+    @supports not (backdrop-filter: blur(5px)) {
+        background: $primary-header;
+    }
     
     .header-body {
+        box-sizing: border-box;
         height: 100%;
         width: 100%;
         display: flex;
@@ -151,7 +185,9 @@ header.header {
             display: flex;
             align-items: center;
             justify-content: stretch;
-            flex: 0 1 95%;
+            flex: 0 1 100%;
+            z-index: 5;
+            transition: top 1s ease 0s;
             
             .nav_item {
                 padding: 0 0.5rem;
@@ -166,12 +202,12 @@ header.header {
                     border-radius: 2px;
                     text-decoration: none;
                     white-space: nowrap;
-                    color: $background;
+                    color: $primary;
                     text-transform: uppercase;
                     letter-spacing: 0.2em;
                     padding: 0.5em 0.8em;
-                    border: 2px solid $background;
-                    transition: all 300ms ease-in-out;
+                    border: 2px solid $primary;
+                    transition: all 300ms ease;
                     box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.2);
                     
                     @media screen and (min-width: 1000px) {
@@ -197,7 +233,7 @@ header.header {
                 margin-left: auto;
                 
                 span {
-                    color: $background;
+                    color: $primary;
                     white-space: nowrap;
                     display: block;
                     font: 0.45rem "PT Sans";
@@ -220,7 +256,7 @@ header.header {
                             width: 1rem;
                             padding: 0.15rem;
                             border-radius: 40px;
-                            background-color: $background;
+                            background-color: $primary;
                             -webkit-transition: all 0.2s ease;
                             -o-transition: all 0.2s ease;
                             transition: all ease 0.2s;
@@ -276,9 +312,30 @@ header.header {
     
     @media (max-width: $breakpoint-md) {
         height: 50px;
+        border: none;
+        background-color: transparent;
         
         .header-body {
             justify-content: flex-end;
+            
+            .header-block {
+                display: block;
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                height: 50px;
+                box-sizing: border-box;
+                border-bottom: 2px solid $primary;
+                z-index: 15;
+                background: $main-transparence;
+                -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+                
+                @supports not (backdrop-filter: blur(5px)) {
+                    background: $primary-header;
+                }
+            }
             
             .bars {
                 display: flex;
@@ -287,9 +344,9 @@ header.header {
                 height: $bar-length;
                 border-radius: 50%;
                 cursor: pointer;
+                z-index: 20;
                 
                 &.is-active {
-                    z-index: 12;
                     
                     span {
                         transform: rotate(-45deg);
@@ -307,7 +364,7 @@ header.header {
                     height: $bar-thickness;
                     border-radius: 3px;
                     transition: 0.2s ease-in-out;
-                    background: $background;
+                    background: $primary;
                     top: 49%;
                     
                     &::before,
@@ -320,7 +377,7 @@ header.header {
                         will-change: transform;
                         width: $bar-length;
                         height: $bar-thickness;
-                        background: $background;
+                        background: $primary;
                         border-radius: 2px;
                         transition: 0.2s ease-in-out;
                     }
@@ -345,10 +402,13 @@ header.header {
                 width: 100%;
                 max-width: unset;
                 height: 100%;
-                z-index: 10;
-                background: $background;
-                background: rgba(54, 53, 80, 0.5);
-                transition: all 1s ease 0s;
+                background: $main-transparence;
+                -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+                
+                @supports not (backdrop-filter: blur(5px)) {
+                    background: $primary-header;
+                }
                 
                 .social__column {
                     span {
@@ -407,9 +467,274 @@ header.header {
     }
 }
 
-div.weather-container {
+$weather-icon-size: 1rem;
+
+.weather-container {
     width: 100%;
     height: 100%;
+    padding-top: 0.7rem;
+    user-select: none;
+    
+    &-row {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: flex;
+        flex-flow: row wrap-reverse;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+    
+    .form-animation {
+        &-enter {
+            opacity: 0;
+            
+            &-active {
+                opacity: 1;
+                transition: opacity 500ms;
+            }
+        }
+        
+        &-exit {
+            opacity: 1;
+            
+            &-active {
+                opacity: 0;
+                transition: opacity 500ms;
+            }
+        }
+    }
+    
+    .location_form {
+        display: inline-block;
+        box-sizing: border-box;
+        font-family: "PT Sans";
+        width: 30vw;
+        min-width: 170px;
+        max-width: 250px;
+        text-align: right;
+        margin-left: auto;
+        margin-bottom: 0.4rem;
+        
+        @media screen and (max-width: $breakpoint-md) {
+            width: 33vw;
+            
+            &__group {
+                width: 100%;
+            }
+            button.btn {
+                width: 100%;
+            }
+        }
+        
+        @media screen and (max-width: 518px) {
+            width: 50vw;
+        }
+        
+        &__group {
+            position: relative;
+            padding: 15px 0 0;
+            margin-left: auto;
+            width: 70%;
+        }
+        
+        &__input {
+            width: 100%;
+            border: 0;
+            border-bottom: 2px solid $primary;
+            outline: 0;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            color: $primary;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+            
+            &::placeholder {
+                color: transparent;
+            }
+            
+            &:placeholder-shown ~ .location_form__label {
+                user-select: none;
+                font-size: 0.55rem;
+                cursor: text;
+                top: 27px;
+            }
+        }
+        
+        &__label {
+            position: absolute;
+            top: 5px;
+            display: block;
+            transition: 0.2s;
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+            color: $primary;
+        }
+        
+        &__input:focus {
+            ~ .location_form__label {
+                position: absolute;
+                top: 5px;
+                display: block;
+                transition: 0.2s;
+                font-size: 0.5rem;
+            }
+        }
+        
+        &__input {
+            &:required, &:invalid {
+                box-shadow: none;
+            }
+        }
+        
+        .current-location-block {
+            color: $primary;
+            text-align: right;
+            
+            p {
+                font-size: 0.5rem;
+                letter-spacing: 0.02rem;
+                
+                &.city {
+                    letter-spacing: 0.04rem;
+                    font-size: 0.7rem;
+                }
+            }
+            
+            div.coords {
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flex;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: flex-start;
+                justify-content: flex-end;
+                padding: 0.2rem 0 0;
+                
+                span {
+                    font-size: 0.5rem;
+                    margin-left: 0.5em;
+                }
+            }
+        }
+        
+        button.btn {
+            @include button-mixin;
+            font-size: 0.5rem;
+            width: 70%;
+        }
+    }
+    
+    .current-weather-card {
+        box-sizing: border-box;
+        background-color: $card-back;
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        padding: 0.4rem 0.4rem 0.4rem 0.5rem;
+        color: $white;
+        border: 2px solid $primary;
+        min-width: 330px;
+        max-height: 50vh;
+        text-align: center;
+        font-family: "PT Sans";
+        letter-spacing: 0.02rem;
+        cursor: pointer;
+        width: 37vw;
+        max-width: 400px;
+        
+        @media screen and (max-width: 518px) {
+            margin: 0 auto;
+        }
+        
+        svg.main-icon {
+            width: 3.8rem;
+            height: 3.8rem;
+        }
+        
+        h3 {
+            align-self: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.06rem;
+            padding: 0 0.2rem;
+        }
+        
+        h5 {
+            align-self: center;
+            font-size: 0.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06rem;
+            padding: 0.1rem 0.2rem;
+        }
+        
+        .card-content {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-start;
+            
+            p {
+                display: block;
+                font-size: 0.53rem;
+                letter-spacing: 0.08rem;
+            }
+            
+            span {
+                margin-top: 0.1rem;
+                display: block;
+                width: 100%;
+                color: $white;
+                font-weight: normal;
+                font-size: 0.45rem;
+                text-align: center;
+                font-style: italic;
+            }
+            
+            svg.card-icon {
+                width: $weather-icon-size;
+                height: $weather-icon-size;
+                
+                &.pressure {
+                    width: calc(#{$weather-icon-size} - 0.1rem);
+                    height: calc(#{$weather-icon-size} - 0.1rem);
+                    margin-right: 0.1rem;
+                }
+                
+                &.humidity {
+                    width: calc(#{$weather-icon-size} - 0.2rem);
+                    height: calc(#{$weather-icon-size} - 0.2rem);
+                    margin-right: 0.2rem;
+                }
+            }
+            
+            .card-content-block {
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flex;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: center;
+                margin: 0.1rem;
+                
+                p {
+                    display: inline-block;
+                    margin-left: 0.4rem;
+                }
+                
+                .temp-wrapper {
+                    p {
+                        display: block;
+                        text-align: left;
+                        margin-left: 0.4rem;
+                        padding: 0.05rem 0;
+                    }
+                }
+            }
+        }
+    }
     
     .weather-slider-panel {
         position: fixed;
@@ -417,15 +742,66 @@ div.weather-container {
         right: 0;
         left: 0;
         padding: 0.4rem 1.2rem;
-        //border-top: 2px solid $background;
-        //background: rgba(54, 53, 80, 0.4);
         
-        @media screen and (max-width: 576px){
+        @media screen and (max-width: 576px) {
             padding: 0.5rem;
         }
     }
 }
 
+ul.alert-members-list {
+    list-style: none;
+    padding: 0 0.2rem 0.1rem 0.1rem;
+    max-height: 300px;
+    overflow-y: scroll;
+    margin-top: 0.3rem;
+    
+    &::-webkit-scrollbar-track-piece {
+        background: $white;
+        border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary;
+        border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar {
+        display: block;
+        width: 3px;
+    }
+    
+    li {
+        color: $main;
+        border: 2px solid $main;
+        border-radius: 4px;
+        padding: 0.1rem 0.1rem 0.1rem 0.2rem;
+        text-align: left;
+        display: block;
+        margin: 0.2rem 0;
+        font-size: 0.55rem;
+        cursor: pointer;
+        
+        &:first-child {
+            margin-top: 0;
+        }
+        
+        @media screen and (min-width: $breakpoint-md) {
+            &:hover {
+                border: 2px solid $white;
+                color: $white
+            }
+        }
+        
+        &:active {
+            border: 2px solid $white;
+            color: $white
+        }
+    }
+}
+
 @import "../weather-slider/styles/slider";
+@import "loader";
+@import "alert";
 
 

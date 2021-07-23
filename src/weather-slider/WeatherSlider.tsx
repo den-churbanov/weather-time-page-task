@@ -1,50 +1,74 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react'
-import {useWeather, WeatherProvider} from './WeatherContext'
-import {SliderItem} from './SliderItem'
+import {useWeather} from './WeatherContext'
+import {SliderCard} from './SliderCard'
 import {Icon} from '../components/svg-icons/Icon'
 import IconsSVG from './styles/weather-icons-sprite.svg'
+import {Loader} from "../components/Loader";
 
 enum Direction {
     left,
     right
 }
 
-export const WeatherSlider: React.FC = () => {
-    const itemMargin = 10
+interface ISliderParams {
+    breakpoints: Array<{
+        point: number,
+        slidesToShow: number
+    }>
+}
+
+export const WeatherSlider: React.FC<ISliderParams> = ({breakpoints}) => {
+    const ITEM_MAR = 10
     const wrapper = useRef<HTMLDivElement>(null)
 
-    const forecast = new Array(10).fill(0).map((_, idx) => idx)
     const [sliderState, setSliderState] = useState({
         position: 0,
         slidesToScroll: 1,
-        wrapperWidth: 1000
+        wrapperWidth: 1280
     })
     const [touchStart, setTouchStart] = useState(0)
     const [direction, setDirection] = useState<Direction>(Direction.right)
+
+    const {current} = wrapper
+    const wrapperWidth = current?.clientWidth
+
     const slidesToShow = useMemo(() => {
-        const wrapperWidth = wrapper.current!?.clientWidth
-        return wrapperWidth < 576 ? 2 :
-            wrapperWidth < 992 ? 4 :
-                wrapperWidth < 1500 ? 6 : 8
-    }, [wrapper.current!?.clientWidth])
+        for (const {slidesToShow, point} of breakpoints) {
+            if (wrapperWidth! < point) return slidesToShow
+        }
+        return 5
+    }, [wrapperWidth])
+
     const itemWidth = useMemo(() => {
-        const wrapperWidth = wrapper.current!?.clientWidth
-        return (wrapperWidth - (slidesToShow * 2 - 2) * itemMargin) / slidesToShow
-    }, [wrapper.current!?.clientWidth, slidesToShow])
-    const scrollX = itemWidth + 2 * itemMargin
+        return (wrapperWidth! - (slidesToShow * 2 - 2) * ITEM_MAR) / slidesToShow
+    }, [wrapperWidth, slidesToShow])
+
+    const scrollX = itemWidth + 2 * ITEM_MAR
 
     useEffect(() => {
         setSliderState(prevState => ({
             ...prevState,
-            wrapperWidth: wrapper.current!?.clientWidth
+            wrapperWidth: wrapperWidth!,
+            position: -scrollX
         }))
-    }, [wrapper])
+    }, [wrapperWidth])
 
-    // const {forecast} = useWeather()
+    const {forecast, isLoading} = useWeather()
+
+    const styles = {
+        trackStyle: {
+            transform: `translateX(${sliderState.position}px)`,
+        },
+        itemStyle: {
+            minWidth: `${itemWidth}px`,
+            margin: `0 ${ITEM_MAR}px`
+        }
+    }
+    const weather = forecast?.daily
 
     //handlers
     const prevBtnHandler = (e: React.MouseEvent) => {
-        if (sliderState.position === 0) return
+        if (Math.round(sliderState.position) === 0) return
         setSliderState(prevState =>
             ({
                 ...prevState,
@@ -53,7 +77,7 @@ export const WeatherSlider: React.FC = () => {
         )
     }
     const nextBtnHandler = (e: React.MouseEvent) => {
-        if (Math.abs(sliderState.position) / scrollX === forecast.length - slidesToShow) return
+        if (Math.abs(sliderState.position) / scrollX === weather!.length - slidesToShow) return
         setSliderState(prevState =>
             ({
                 ...prevState,
@@ -68,7 +92,7 @@ export const WeatherSlider: React.FC = () => {
         const dx = e.touches[0].clientX - touchStart
         dx < 0 ? setDirection(Direction.right) : setDirection(Direction.left)
         if (sliderState.position + dx > 10 ||
-            Math.abs(sliderState.position + dx) > (forecast.length - slidesToShow) * scrollX + 10) return
+            Math.abs(sliderState.position + dx) > (weather!.length - slidesToShow) * scrollX + 10) return
         setTouchStart(e.touches[0].clientX)
         setSliderState(prevState => (
             {
@@ -79,7 +103,6 @@ export const WeatherSlider: React.FC = () => {
     }
     const onTouchEndHandler = (e: React.TouchEvent) => {
         const dx = sliderState.position % scrollX
-        console.log('dx', dx)
         switch (direction) {
             case Direction.left:
                 setSliderState(prevState => (
@@ -92,7 +115,7 @@ export const WeatherSlider: React.FC = () => {
             case Direction.right:
                 if (Math.abs(dx) < itemWidth / 2) {
                     setSliderState(prevState => (
-                        {  
+                        {
                             ...prevState,
                             position: prevState.position - dx
                         }
@@ -107,43 +130,33 @@ export const WeatherSlider: React.FC = () => {
 
                 }
         }
-
-        // if (Math.abs(dx) < itemWidth / 2) {
-        //
-        // } else {
-
-        // }
         setTouchStart(0)
-    }
-
-    const styles = {
-        trackStyle: {
-            transform: `translateX(${sliderState.position}px)`,
-        },
-        itemStyle: {
-            minWidth: `${itemWidth}px`,
-            margin: `0 ${itemMargin}px`
-        }
     }
 
     return (
         <div className="wrapper" ref={wrapper}>
-            <div className="slider-button prev" onClick={prevBtnHandler}>
-                <Icon name="slider-arrow" file={IconsSVG}/>
-            </div>
-            <div className="slider-container">
-                <div className="slider-track" style={styles.trackStyle}
-                     onTouchStart={onTouchStartHandler}
-                     onTouchMove={onTouchMoveHandler}
-                     onTouchEnd={onTouchEndHandler}>
-                    {forecast.map((item, idx) => {
-                        return <SliderItem key={idx} item={item} style={styles.itemStyle}/>
-                    })}
-                </div>
-            </div>
-            <div className="slider-button next" onClick={nextBtnHandler}>
-                <Icon name="slider-arrow" file={IconsSVG}/>
-            </div>
+            {isLoading ? <Loader/> :
+                <>
+                    {weather &&
+                    <div className="slider-button prev" onClick={prevBtnHandler}>
+                        <Icon name="slider-arrow" file={IconsSVG}/>
+                    </div>}
+                    <div className="slider-container">
+                        <div className="slider-track" style={styles.trackStyle}
+                             onTouchStart={onTouchStartHandler}
+                             onTouchMove={onTouchMoveHandler}
+                             onTouchEnd={onTouchEndHandler}>
+                            {weather && weather.map((item, idx) => {
+                                return <SliderCard key={idx} item={item} style={styles.itemStyle}/>
+                            })}
+                        </div>
+                    </div>
+                    {weather &&
+                    <div className="slider-button next" onClick={nextBtnHandler}>
+                        <Icon name="slider-arrow" file={IconsSVG}/>
+                    </div>}
+                </>
+            }
         </div>
     )
 }
