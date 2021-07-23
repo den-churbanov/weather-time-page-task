@@ -1,6 +1,6 @@
-##_DEMO_
+## _DEMO_
 
-#####Демонстрацию проекта можно посмотреть [здесь](https://weather-application-1870a.web.app/weather)
+##### Демонстрацию проекта можно посмотреть [здесь](https://weather-application-1870a.web.app/weather)
 
 ## _Запуск проекта_
 
