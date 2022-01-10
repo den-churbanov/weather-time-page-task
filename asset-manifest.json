@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.5d997e59.chunk.css",
-    "main.js": "./static/js/main.5d00ea9a.chunk.js",
-    "main.js.map": "./static/js/main.5d00ea9a.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.58301f39.js",
-    "runtime-main.js.map": "./static/js/runtime-main.58301f39.js.map",
-    "static/js/2.1a382c64.chunk.js": "./static/js/2.1a382c64.chunk.js",
-    "static/js/2.1a382c64.chunk.js.map": "./static/js/2.1a382c64.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/main.5d997e59.chunk.css.map": "./static/css/main.5d997e59.chunk.css.map",
-    "static/js/2.1a382c64.chunk.js.LICENSE.txt": "./static/js/2.1a382c64.chunk.js.LICENSE.txt",
-    "static/media/app.css": "./static/media/pt-sans-v12-latin-ext_latin_cyrillic-ext_cyrillic-regular.bcad4875.eot",
-    "static/media/social-icons-sprite.8f9e79c9.svg": "./static/media/social-icons-sprite.8f9e79c9.svg",
-    "static/media/weather-icons-sprite.59631b9e.svg": "./static/media/weather-icons-sprite.59631b9e.svg"
+    "main.css": "./weather-time-page-task/static/css/main.5d997e59.chunk.css",
+    "main.js": "./weather-time-page-task/static/js/main.bdfc6da0.chunk.js",
+    "main.js.map": "./weather-time-page-task/static/js/main.bdfc6da0.chunk.js.map",
+    "runtime-main.js": "./weather-time-page-task/static/js/runtime-main.b3efdcbd.js",
+    "runtime-main.js.map": "./weather-time-page-task/static/js/runtime-main.b3efdcbd.js.map",
+    "static/js/2.1a382c64.chunk.js": "./weather-time-page-task/static/js/2.1a382c64.chunk.js",
+    "static/js/2.1a382c64.chunk.js.map": "./weather-time-page-task/static/js/2.1a382c64.chunk.js.map",
+    "index.html": "./weather-time-page-task/index.html",
+    "static/css/main.5d997e59.chunk.css.map": "./weather-time-page-task/static/css/main.5d997e59.chunk.css.map",
+    "static/js/2.1a382c64.chunk.js.LICENSE.txt": "./weather-time-page-task/static/js/2.1a382c64.chunk.js.LICENSE.txt",
+    "static/media/app.css": "./weather-time-page-task/static/media/pt-sans-v12-latin-ext_latin_cyrillic-ext_cyrillic-regular.bcad4875.eot",
+    "static/media/social-icons-sprite.8f9e79c9.svg": "./weather-time-page-task/static/media/social-icons-sprite.8f9e79c9.svg",
+    "static/media/weather-icons-sprite.59631b9e.svg": "./weather-time-page-task/static/media/weather-icons-sprite.59631b9e.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.58301f39.js",
+    "static/js/runtime-main.b3efdcbd.js",
     "static/js/2.1a382c64.chunk.js",
     "static/css/main.5d997e59.chunk.css",
-    "static/js/main.5d00ea9a.chunk.js"
+    "static/js/main.bdfc6da0.chunk.js"
   ]
 }
