@@ -24,10 +24,9 @@ export const CurrentLocationBlock: React.FC = () => {
     }
 
     useEffect(() => {
-        if (forecast)
-            setTime(getCurrentLocationTimeString(forecast!.timezone));
+        if (forecast) setTime(getCurrentLocationTimeString(forecast.timezone));
         const timer = setInterval(() => {
-            setTime(getCurrentLocationTimeString(forecast!.timezone));
+            if (forecast) setTime(getCurrentLocationTimeString(forecast.timezone));
         }, 1000)
         return () => {
             clearInterval(timer)
