@@ -29,7 +29,7 @@ export const CurrentWeatherBlock = () => {
     }
 
     if (!forecast) return null
-    if(isLoading) return null
+
     const current = forecast.current
     const temp = current.temp
     const feels = current.feels_like

@@ -135,7 +135,7 @@ export const WeatherSlider: React.FC<ISliderParams> = ({breakpoints}) => {
 
     return (
         <div className="wrapper" ref={wrapper}>
-            {isLoading ? <Loader/> :
+            {isLoading && !weather ? <Loader/> :
                 <>
                     {weather &&
                     <div className="slider-button prev" onClick={prevBtnHandler}>
