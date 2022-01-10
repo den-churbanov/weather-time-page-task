@@ -1,10 +1,20 @@
-import React, {useMemo, useRef} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
 import {useWeather} from '../weather-slider/WeatherContext'
 import {CSSTransition, SwitchTransition} from 'react-transition-group'
 
+const getCurrentLocationTimeString = (timezone: string) => {
+    return new Date().toLocaleTimeString('ru', {
+        timeZone: timezone,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    })
+}
+
 export const CurrentLocationBlock: React.FC = () => {
 
-    const {getMembersByCityName, active, resetCurrentWeather, members} = useWeather()
+    const {getMembersByCityName, active, resetCurrentWeather, members, forecast} = useWeather()
+    const [currentLocationTime, setTime] = useState<string>()
     const input = useRef<HTMLInputElement>(null)
     const findWeatherForecast = (e: React.MouseEvent) => {
         e.preventDefault()
@@ -12,6 +22,17 @@ export const CurrentLocationBlock: React.FC = () => {
             getMembersByCityName(input.current.value.trim())
         }
     }
+
+    useEffect(() => {
+        if (forecast)
+            setTime(getCurrentLocationTimeString(forecast!.timezone));
+        const timer = setInterval(() => {
+            setTime(getCurrentLocationTimeString(forecast!.timezone));
+        }, 1000)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [forecast])
 
     const resetWeather = (e: React.MouseEvent) => {
         e.preventDefault()
@@ -53,6 +74,9 @@ export const CurrentLocationBlock: React.FC = () => {
                             <div className="coords">
                                 <span>{members[active].coords.latitude}</span>
                                 <span>{members[active].coords.longitude}</span>
+                            </div>
+                            <div className="time">
+                                <span>{currentLocationTime}</span>
                             </div>
                         </div>
                     }

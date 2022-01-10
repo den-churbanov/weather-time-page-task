@@ -23,19 +23,19 @@ $primary: $main;
     -moz-transition: all ease-in 0.2s;
     -o-transition: all ease-in 0.2s;
     transition: all ease-in 0.2s;
-    
+
     &:disabled {
         opacity: 0.75;
         cursor: auto;
     }
-    
+
     @media screen and (min-width: 992px) {
         &:hover:enabled {
             background: $primary;
             color: $white;
         }
     }
-    
+
     &:active:enabled {
         background: $primary;
         color: $white;
@@ -76,11 +76,11 @@ div.content-container {
     width: 100vw;
     font-weight: bold;
     text-align: center;
-    
+
     @media (max-width: $breakpoint-sm) {
         padding: 50px 0.4rem 0;
     }
-    
+
     h1 {
         font-family: "Codename Coder", sans-serif;
         display: inline-block;
@@ -97,10 +97,10 @@ div.content-container {
         user-select: none;
         z-index: 1;
     }
-    
+
     h1.time-header {
         background: $primary;
-        
+
         &:before, &:after {
             position: absolute;
             background: $primary;
@@ -111,15 +111,15 @@ div.content-container {
             border-radius: 50%;
             z-index: -1;
         }
-        
+
         &:before {
             left: -1.2rem;
         }
-        
+
         &:after {
             right: -1.2rem;
         }
-        
+
         span.header-border {
             position: absolute;
             top: 5%;
@@ -131,7 +131,7 @@ div.content-container {
             z-index: 2;
         }
     }
-    
+
     h1.hello-header, h4 {
         font-family: Lobster, Arial, sans-serif;
         font-size: 1.5rem;
@@ -139,7 +139,7 @@ div.content-container {
         color: $primary;
         text-shadow: 2px 2px 2px rgba(230, 230, 230, 0.8);
     }
-    
+
     h4 {
         display: block;
         max-width: 600px;
@@ -166,22 +166,22 @@ header.header {
     z-index: 10;
     border-bottom: 2px solid $primary;
     background: $main-transparence;
-    
+
     @supports not (backdrop-filter: blur(5px)) {
         background: $primary-header;
     }
-    
+
     .header-body {
         box-sizing: border-box;
         height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
-        
+
         .bars {
             display: none;
         }
-        
+
         nav.site-header-list {
             display: flex;
             align-items: center;
@@ -189,13 +189,13 @@ header.header {
             flex: 0 1 100%;
             z-index: 5;
             transition: top 1s ease 0s;
-            
+
             .nav_item {
                 padding: 0 0.5rem;
                 cursor: pointer;
                 text-align: center;
                 justify-self: flex-start;
-                
+
                 .nav_link {
                     font-family: "PT Sans", sans-serif;
                     display: inline-block;
@@ -210,7 +210,7 @@ header.header {
                     border: 2px solid $primary;
                     transition: all 300ms ease;
                     box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.2);
-                    
+
                     @media screen and (min-width: 1000px) {
                         &:hover {
                             border: 2px solid $white;
@@ -218,21 +218,21 @@ header.header {
                             box-shadow: none;
                         }
                     }
-                    
+
                     &:active {
                         border: 2px solid #fff;
                         color: $white;
                     }
                 }
             }
-            
+
             .social__column {
                 padding-top: 0.2rem;
                 display: flex;
                 flex-flow: column nowrap;
                 align-items: center;
                 margin-left: auto;
-                
+
                 span {
                     color: $primary;
                     white-space: nowrap;
@@ -241,16 +241,16 @@ header.header {
                     letter-spacing: 0.15em;
                     text-transform: uppercase;
                 }
-                
+
                 ul.social-menu {
                     display: flex;
                     list-style: none;
                     padding: 0;
-                    
+
                     li {
                         display: inline-block;
                         margin: 0.2rem;
-                        
+
                         a {
                             display: flex;
                             height: 1rem;
@@ -261,47 +261,47 @@ header.header {
                             -webkit-transition: all 0.2s ease;
                             -o-transition: all 0.2s ease;
                             transition: all ease 0.2s;
-                            
+
                             .social-icon {
                                 margin: 0 auto;
                                 width: 80%;
                                 height: auto;
                                 fill: #fff;
                             }
-                            
+
                             &:hover, &:active {
                                 .social-icon {
                                     fill: #fff;
                                 }
                             }
-                            
-                            
+
+
                             &:hover {
                                 &.phone-icon {
                                     background-color: $phone-icon-color;
                                 }
-                                
+
                                 &.gmail-icon {
                                     background-color: $gmail-icon-color;
                                 }
-                                
+
                                 &.tg-icon {
                                     background-color: $tg-icon-color;
                                 }
-                                
+
                                 &.vk-icon {
                                     background-color: $vk-icon-color;
                                 }
-                                
+
                                 &.ig-icon {
                                     background: $ig-icon-col-default;
                                     background: $ig-icon-color;
                                 }
-                                
-                                
+
+
                             }
                         }
-                        
+
                         .phone-icon .social-icon {
                             width: 70%;
                         }
@@ -310,15 +310,15 @@ header.header {
             }
         }
     }
-    
+
     @media (max-width: $breakpoint-md) {
         height: 50px;
         border: none;
         background-color: transparent;
-        
+
         .header-body {
             justify-content: flex-end;
-            
+
             .header-block {
                 display: block;
                 position: fixed;
@@ -332,12 +332,12 @@ header.header {
                 background: $main-transparence;
                 -webkit-backdrop-filter: blur(5px);
                 backdrop-filter: blur(5px);
-                
+
                 @supports not (backdrop-filter: blur(5px)) {
                     background: $primary-header;
                 }
             }
-            
+
             .bars {
                 display: flex;
                 position: relative;
@@ -346,19 +346,19 @@ header.header {
                 border-radius: 50%;
                 cursor: pointer;
                 z-index: 20;
-                
+
                 &.is-active {
-                    
+
                     span {
                         transform: rotate(-45deg);
-                        
+
                         &:before,
                         &:after {
                             transform: translateX(0) rotate(-90deg);
                         }
                     }
                 }
-                
+
                 & > span {
                     position: absolute;
                     width: $bar-length;
@@ -367,7 +367,7 @@ header.header {
                     transition: 0.2s ease-in-out;
                     background: $primary;
                     top: 49%;
-                    
+
                     &::before,
                     &::after {
                         content: '';
@@ -382,18 +382,18 @@ header.header {
                         border-radius: 2px;
                         transition: 0.2s ease-in-out;
                     }
-                    
+
                     &:before {
                         transform: translateY(-8px);
                     }
-                    
+
                     &:after {
                         transform: translateY(8px);
                     }
-                    
+
                 }
             }
-            
+
             nav.site-header-list {
                 display: block;
                 box-sizing: border-box;
@@ -406,57 +406,57 @@ header.header {
                 background: $main-transparence;
                 -webkit-backdrop-filter: blur(5px);
                 backdrop-filter: blur(5px);
-                
+
                 @supports not (backdrop-filter: blur(5px)) {
                     background: $primary-header;
                 }
-                
+
                 .social__column {
                     span {
                         font-size: 0.55rem;
                     }
-                    
+
                     ul.social-menu li a {
                         height: 1.2rem;
                         width: 1.2rem;
-                        
+
                         &.phone-icon {
                             background-color: $phone-icon-color;
                         }
-                        
+
                         &.gmail-icon {
                             background-color: $gmail-icon-color;
                         }
-                        
+
                         &.tg-icon {
                             background-color: $tg-icon-color;
                         }
-                        
+
                         &.vk-icon {
                             background-color: $vk-icon-color;
                         }
-                        
+
                         &.ig-icon {
                             background: $ig-icon-col-default;
                             background: $ig-icon-color;
                         }
                     }
                 }
-                
+
                 &.active {
                     top: 0;
                     padding-top: 50px;
                     overflow: hidden;
                 }
-                
+
                 .nav_item {
                     display: block;
                     padding: 5px 0;
-                    
+
                     .nav_link {
                         width: 100%;
                         font-size: 0.6rem;
-                        
+
                         &:active {
                             border: 2px solid #fff;
                             color: $white;
@@ -475,7 +475,7 @@ $weather-icon-size: 1rem;
     height: 100%;
     padding-top: 0.7rem;
     user-select: none;
-    
+
     &-row {
         display: -webkit-flex;
         display: -moz-flex;
@@ -485,27 +485,27 @@ $weather-icon-size: 1rem;
         align-items: flex-end;
         justify-content: space-between;
     }
-    
+
     .form-animation {
         &-enter {
             opacity: 0;
-            
+
             &-active {
                 opacity: 1;
                 transition: opacity 500ms;
             }
         }
-        
+
         &-exit {
             opacity: 1;
-            
+
             &-active {
                 opacity: 0;
                 transition: opacity 500ms;
             }
         }
     }
-    
+
     .location_form {
         display: inline-block;
         box-sizing: border-box;
@@ -516,10 +516,10 @@ $weather-icon-size: 1rem;
         text-align: right;
         margin-left: auto;
         margin-bottom: 0.4rem;
-        
+
         @media screen and (max-width: $breakpoint-md) {
             width: 33vw;
-            
+
             &__group {
                 width: 100%;
             }
@@ -527,18 +527,18 @@ $weather-icon-size: 1rem;
                 width: 100%;
             }
         }
-        
+
         @media screen and (max-width: 518px) {
             width: 50vw;
         }
-        
+
         &__group {
             position: relative;
             padding: 15px 0 0;
             margin-left: auto;
             width: 70%;
         }
-        
+
         &__input {
             width: 100%;
             border: 0;
@@ -550,11 +550,11 @@ $weather-icon-size: 1rem;
             padding: 7px 0;
             background: transparent;
             transition: border-color 0.2s;
-            
+
             &::placeholder {
                 color: transparent;
             }
-            
+
             &:placeholder-shown ~ .location_form__label {
                 user-select: none;
                 font-size: 0.55rem;
@@ -562,7 +562,7 @@ $weather-icon-size: 1rem;
                 top: 27px;
             }
         }
-        
+
         &__label {
             position: absolute;
             top: 5px;
@@ -572,7 +572,7 @@ $weather-icon-size: 1rem;
             letter-spacing: 0.1em;
             color: $primary;
         }
-        
+
         &__input:focus {
             ~ .location_form__label {
                 position: absolute;
@@ -582,27 +582,27 @@ $weather-icon-size: 1rem;
                 font-size: 0.5rem;
             }
         }
-        
+
         &__input {
             &:required, &:invalid {
                 box-shadow: none;
             }
         }
-        
+
         .current-location-block {
             color: $primary;
             text-align: right;
-            
+
             p {
                 font-size: 0.5rem;
                 letter-spacing: 0.02rem;
-                
+
                 &.city {
                     letter-spacing: 0.04rem;
                     font-size: 0.7rem;
                 }
             }
-            
+
             div.coords {
                 display: -webkit-flex;
                 display: -moz-flex;
@@ -612,21 +612,26 @@ $weather-icon-size: 1rem;
                 align-items: flex-start;
                 justify-content: flex-end;
                 padding: 0.2rem 0 0;
-                
+
                 span {
                     font-size: 0.5rem;
                     margin-left: 0.5em;
                 }
             }
+
+            div.time span {
+                font-size: 0.8rem;
+            }
+
         }
-        
+
         button.btn {
             @include button-mixin;
             font-size: 0.5rem;
             width: 70%;
         }
     }
-    
+
     .current-weather-card {
         box-sizing: border-box;
         background-color: $card-back;
@@ -643,23 +648,23 @@ $weather-icon-size: 1rem;
         cursor: pointer;
         width: 37vw;
         max-width: 400px;
-        
+
         @media screen and (max-width: 518px) {
             margin: 0 auto;
         }
-        
+
         svg.main-icon {
             width: 3.8rem;
             height: 3.8rem;
         }
-        
+
         h3 {
             align-self: center;
             font-size: 0.7rem;
             letter-spacing: 0.06rem;
             padding: 0 0.2rem;
         }
-        
+
         h5 {
             align-self: center;
             font-size: 0.45rem;
@@ -667,7 +672,7 @@ $weather-icon-size: 1rem;
             letter-spacing: 0.06rem;
             padding: 0.1rem 0.2rem;
         }
-        
+
         .card-content {
             display: -webkit-flex;
             display: -moz-flex;
@@ -675,13 +680,13 @@ $weather-icon-size: 1rem;
             display: flex;
             flex-flow: column nowrap;
             align-items: flex-start;
-            
+
             p {
                 display: block;
                 font-size: 0.53rem;
                 letter-spacing: 0.08rem;
             }
-            
+
             span {
                 margin-top: 0.1rem;
                 display: block;
@@ -692,24 +697,24 @@ $weather-icon-size: 1rem;
                 text-align: center;
                 font-style: italic;
             }
-            
+
             svg.card-icon {
                 width: $weather-icon-size;
                 height: $weather-icon-size;
-                
+
                 &.pressure {
                     width: calc(#{$weather-icon-size} - 0.1rem);
                     height: calc(#{$weather-icon-size} - 0.1rem);
                     margin-right: 0.1rem;
                 }
-                
+
                 &.humidity {
                     width: calc(#{$weather-icon-size} - 0.2rem);
                     height: calc(#{$weather-icon-size} - 0.2rem);
                     margin-right: 0.2rem;
                 }
             }
-            
+
             .card-content-block {
                 display: -webkit-flex;
                 display: -moz-flex;
@@ -719,12 +724,12 @@ $weather-icon-size: 1rem;
                 align-items: center;
                 justify-content: center;
                 margin: 0.1rem;
-                
+
                 p {
                     display: inline-block;
                     margin-left: 0.4rem;
                 }
-                
+
                 .temp-wrapper {
                     p {
                         display: block;
@@ -736,14 +741,14 @@ $weather-icon-size: 1rem;
             }
         }
     }
-    
+
     .weather-slider-panel {
         position: fixed;
         bottom: 0;
         right: 0;
         left: 0;
         padding: 0.4rem 1.2rem;
-        
+
         @media screen and (max-width: 576px) {
             padding: 0.5rem;
         }
@@ -756,22 +761,22 @@ ul.alert-members-list {
     max-height: 300px;
     overflow-y: scroll;
     margin-top: 0.3rem;
-    
+
     &::-webkit-scrollbar-track-piece {
         background: $white;
         border-radius: 3px;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         background-color: $primary;
         border-radius: 3px;
     }
-    
+
     &::-webkit-scrollbar {
         display: block;
         width: 3px;
     }
-    
+
     li {
         color: $main;
         border: 2px solid $main;
@@ -782,18 +787,18 @@ ul.alert-members-list {
         margin: 0.2rem 0;
         font-size: 0.55rem;
         cursor: pointer;
-        
+
         &:first-child {
             margin-top: 0;
         }
-        
+
         @media screen and (min-width: $breakpoint-md) {
             &:hover {
                 border: 2px solid $white;
                 color: $white
             }
         }
-        
+
         &:active {
             border: 2px solid $white;
             color: $white
